@@ -26,10 +26,10 @@ Simply include `logger.hpp` in your project:
 ### Basic Logging
 
 ```cpp
-Logger::log(Logger::LogLevel::Info, "Start Success!");
-Logger::log(Logger::LogLevel::Warning, "Running out of Memory!");
-Logger::log(Logger::LogLevel::Error, "Failed to locate file");
-Logger::log(Logger::LogLevel::Debug, "Value of Var test = ", 0xBADC0DE);
+Logger::log(LogLevel::Info, "Start Success!");
+Logger::log(LogLevel::Warning, "Running out of Memory!");
+Logger::log(LogLevel::Error, "Failed to locate file");
+Logger::log(LogLevel::Debug, "Value of Var test = ", 0xBADC0DE);
 ```
 
 ### Customizing Log Output
@@ -59,7 +59,7 @@ int result = Logger::profile_function("Test2", []() {
     std::this_thread::sleep_for(std::chrono::milliseconds(150));
     return 510;
 });
-Logger::log(Logger::LogLevel::Info, "Test2 result: ", result);
+Logger::log(LogLevel::Info, "Test2 result: ", result);
 ```
 
 ## Configuration Options
