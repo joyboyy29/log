@@ -145,3 +145,4 @@ private:
     static inline Config log_config;
     static inline std::map<std::string, std::chrono::high_resolution_clock::time_point> profiling_data;
 };
+using LogLevel = Logger::LogLevel;
