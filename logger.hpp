@@ -29,7 +29,7 @@ public:
         std::string log_filename = "error_log.txt"; // log filename
     };
 
-    static void set_config(const Config& config) {
+    static inline void set_config(const Config& config) noexcept {
         log_config = config;
     }
 
@@ -51,12 +51,12 @@ public:
     }
 
     // profiles function
-    static void start_profiling(const std::string_view tag) {
+    static void start_profiling(const std::string_view tag) noexcept {
         std::lock_guard<std::mutex> lock(log_mutex);
         profiling_data[tag] = std::chrono::high_resolution_clock::now();
     }
 
-    static void end_profiling(const std::string_view tag) {
+    static void end_profiling(const std::string_view tag) noexcept {
         std::lock_guard<std::mutex> lock(log_mutex);
         auto end_time = std::chrono::high_resolution_clock::now();
         if (profiling_data.find(tag) != profiling_data.end()) {
@@ -68,7 +68,7 @@ public:
 
     // profiles the function call
     template <typename Func, typename... Args>
-    static auto profile_function(const std::string_view tag, Func&& func, Args&&... args) {
+    [[nodiscard]] static auto profile_function(const std::string_view tag, Func&& func, Args&&... args) noexcept {
         auto start_time = std::chrono::high_resolution_clock::now();
         auto result = std::forward<Func>(func)(std::forward<Args>(args)...);
         auto end_time = std::chrono::high_resolution_clock::now();
@@ -140,8 +140,8 @@ private:
             log_file.flush();
         }
     }
-};
 
-std::mutex Logger::log_mutex;
-Logger::Config Logger::log_config;
-std::map<std::string, std::chrono::high_resolution_clock::time_point> Logger::profiling_data;
+    static inline std::mutex log_mutex;
+    static inline Config log_config;
+    static inline std::map<std::string, std::chrono::high_resolution_clock::time_point> profiling_data;
+};
