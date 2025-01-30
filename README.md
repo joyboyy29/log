@@ -2,7 +2,7 @@
 
 ## Overview
 
-Logger is a lightweight C++ logging library that provides console and file logging, log level filtering, and performance profiling. It is designed for efficiency, thread safety, and ease of integration into existing projects. Writing this to practice writing *good* code.
+Logger is a lightweight C++ logging library that provides console and file logging, log level filtering, and performance profiling. It is designed for efficiency, thread safety, and ease of integration into existing projects. Writing this to practice writing *good* code. The least I could do in the army with shitty pcs was this. It was written using a simple editor.
 
 ## Features
 
